@@ -619,23 +619,38 @@
   });
 
   async function updateVisitorCount() {
-        try {
-          const namespace = "BobbyX208.github.io"; 
-          const key = "portfolio_visits";
-          
-          const response = await fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`);
-          const data = await response.json();
-          
-          if (data.value) {
-            document.getElementById("visitor-count").textContent = data.value.toLocaleString();
-          }
-        } catch (error) {
-          console.error("Counter error:", error);
-          document.getElementById("visitor-count").textContent = "132+";
-        }
+    try {
+      const DEVTRACKER_URL = 'https://wasteful-gilligan-bob-h4ck3r-5dbfe2c5.koyeb.app';
+      
+      const sessionKey = 'portfolio_visited_session';
+      const lastVisit = sessionStorage.getItem(sessionKey);
+      const method = lastVisit ? 'GET' : 'POST';
+      
+      const res = await fetch(`${DEVTRACKER_URL}/visitor`, {
+        method: method,
+        headers: { 'Content-Type': 'application/json' }
+      });
+      
+      if (!res.ok) throw new Error('Failed to fetch count');
+      
+      const data = await res.json();
+      
+      if (!lastVisit) {
+        sessionStorage.setItem(sessionKey, Date.now());
       }
-
-      updateVisitorCount();
+      
+      const count = data.count;
+      if (count >= 1000) {
+        document.getElementById("visitor-count").textContent = (count / 1000).toFixed(1) + 'k+';
+      } else {
+        document.getElementById("visitor-count").textContent = count.toLocaleString();
+      }
+      
+    } catch (error) {
+      console.error("Counter error:", error);
+      document.getElementById("visitor-count").textContent = "1.2k+";
+    }
+  }
       
   (function(){
     "use strict";
@@ -757,19 +772,19 @@
         
         if (!res.ok) throw new Error("Failed to fetch");
         const d = await res.json();
-
+    
         const totalSecs = d.totalSeconds || 0;
         const hrs = Math.floor(totalSecs / 3600);
         const mins = Math.floor((totalSecs % 3600) / 60);
-        document.getElementById("dt-total-time").textContent = hrs > 0 ? `${hrs}h ${mins}m` : `${mins}m`;
-
+        document.getElementById("s-time").textContent = hrs > 0 ? `${hrs}h ${mins}m` : `${mins}m`;
+    
         const sessions = d.sessionCount || 0;
-        document.getElementById("dt-sessions").textContent = sessions;
-
+        document.getElementById("s-sessions").textContent = sessions;
+    
         const avgSecs = Math.floor(totalSecs / 7);
         const avgM = Math.floor(avgSecs / 60);
-        document.getElementById("dt-daily-avg").textContent = `${avgM}m`;
-
+        document.getElementById("s-avg").textContent = `${avgM}m`;
+    
         const byLanguage = d.byLanguage || {};
         const langs = Object.entries(byLanguage)
           .filter(([name]) => name && name !== "Unknown")
@@ -780,39 +795,41 @@
           }))
           .sort((a, b) => b.seconds - a.seconds)
           .slice(0, 5);
-
+    
+        const langContainer = document.getElementById("s-langs");
+        
         if (!langs.length) {
-          document.getElementById("dt-languages").innerHTML = `<div class="lang-row"><span class="lang-name">No data yet</span></div>`;
+          langContainer.innerHTML = `<div class="lang-row"><span class="lang-name">No data yet</span></div>`;
           return;
         }
-
+    
         const maxSeconds = langs[0].seconds;
         
-        document.getElementById("dt-languages").innerHTML = langs.map(l => {
+        langContainer.innerHTML = langs.map(l => {
           const barWidth = maxSeconds > 0 ? (l.seconds / maxSeconds) * 100 : 0;
           return `<div class="lang-row">
             <span class="lang-name">${l.name}</span>
-            <div class="lang-bar-bg">
-              <div class="lang-bar-fill" style="width: 0%" data-w="${barWidth}%"></div>
+            <div class="lang-track">
+              <div class="lang-fill" style="width: 0%" data-w="${barWidth}%"></div>
             </div>
-            <span class="lang-percent">${l.percent.toFixed(1)}%</span>
+            <span class="lang-pct">${l.percent.toFixed(1)}%</span>
           </div>`;
         }).join("");
-
+    
         requestAnimationFrame(() => {
           requestAnimationFrame(() => {
-            document.querySelectorAll(".lang-bar-fill").forEach(b => {
+            document.querySelectorAll(".lang-fill").forEach(b => {
               b.style.width = b.dataset.w;
             });
           });
         });
-
+    
       } catch (e) {
         console.error("Stats fetch failed:", e);
-        document.getElementById("dt-total-time").textContent = "--";
-        document.getElementById("dt-sessions").textContent = "--";
-        document.getElementById("dt-daily-avg").textContent = "--";
-        document.getElementById("dt-languages").innerHTML = `<div class="lang-row"><span class="lang-name" style="color:var(--muted)">Wake Koyeb...</span></div>`;
+        document.getElementById("s-time").textContent = "--";
+        document.getElementById("s-sessions").textContent = "--";
+        document.getElementById("s-avg").textContent = "--";
+        document.getElementById("s-langs").innerHTML = `<div class="lang-row"><span class="lang-name" style="color:var(--muted)">Wake Koyeb...</span></div>`;
       }
     }
 
