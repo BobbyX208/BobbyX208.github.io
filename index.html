@@ -4,6 +4,34 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bobby · Creative Technologist</title>
+  <meta name="description" content="Bobby — Creative Technologist based in Nigeria. I build Discord bots, web platforms, automation systems and APIs. Fast execution, clean architecture, real products."/>
+  <meta name="keywords" content="Bobby, Creative Technologist, Nigeria, Python, JavaScript, Discord bot, Flask, React, PostgreSQL, Developer, BobbyX208"/>
+  <meta name="author" content="Bobby"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://bobbyx208.github.io/"/>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://bobbyx208.github.io/"/>
+  <meta property="og:title" content="Bobby · Creative Technologist"/>
+  <meta property="og:description" content="I build Discord bots, web platforms, automation systems and APIs. Fast execution, clean architecture, real products that ship."/>
+  <meta property="og:image" content="https://bobbyx208.github.io/og-image.png"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta property="og:site_name" content="Bobby · BOB."/>
+  <meta property="og:locale" content="en_US"/>
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:url" content="https://bobbyx208.github.io/"/>
+  <meta name="twitter:title" content="Bobby · Creative Technologist"/>
+  <meta name="twitter:description" content="I build Discord bots, web platforms, automation systems and APIs. Fast execution, clean architecture, real products that ship."/>
+  <meta name="twitter:image" content="https://bobbyx208.github.io/og-image.png"/>
+
+  <!-- Theme -->
+  <meta name="theme-color" content="#FF5C00"/>
+  <meta name="color-scheme" content="dark"/>
+
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -27,7 +55,7 @@
       --glass:rgba(18,18,18,0.6);
     }
     html{scroll-behavior:smooth}
-    body{background:var(--bg);color:var(--white);font-family:'Syne',sans-serif;overflow-x:hidden;cursor:none;position:relative}
+    body{background:var(--bg);color:var(--white);font-family:'Syne',sans-serif;overflow-x:hidden;cursor:none;position:relative;-webkit-user-select:none;-moz-user-select:none;user-select:none}
 
     /* PAPER TEXTURE */
     body::before{content:'';position:fixed;inset:0;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.012) 0,rgba(255,255,255,0.012) 1px,transparent 1px,transparent 4px),repeating-linear-gradient(90deg,rgba(255,255,255,0.008) 0,rgba(255,255,255,0.008) 1px,transparent 1px,transparent 6px);pointer-events:none;z-index:0}
@@ -36,7 +64,7 @@
     /* CURSOR */
     .cursor{position:fixed;width:11px;height:11px;background:var(--orange);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s;mix-blend-mode:difference}
     .cursor.hover{width:22px;height:22px;background:transparent;border:2px solid var(--orange)}
-    .cursor-ring{position:fixed;width:40px;height:40px;border:1px solid var(--orange-mid);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .2s;opacity:.45;backdrop-filter:blur(2px),mix-blend-mode: difference; background: var(--white); border: none;}
+    .cursor-ring{position:fixed;width:40px;height:40px;border:1px solid var(--orange-mid);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .2s,border-radius .2s;opacity:.45;backdrop-filter:blur(2px);}
     .cursor-ring.hover{width:60px;height:60px;opacity:.75;border-color:var(--orange)}
 
     /* NAV */
@@ -252,7 +280,7 @@
     .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
     .form-group{display:flex;flex-direction:column;gap:.4rem}
     .form-group label{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
-    .form-group input,.form-group textarea{background:rgba(0,0,0,.35);border:1px solid var(--border);color:var(--white);font-family:'Syne',sans-serif;font-size:.92rem;padding:.85rem 1rem;outline:none;transition:border-color .25s,box-shadow .25s;resize:none;width:100%;backdrop-filter:blur(5px);border-radius:2px}
+    .form-group input,.form-group textarea{background:rgba(0,0,0,.35);border:1px solid var(--border);color:var(--white);font-family:'Syne',sans-serif;font-size:.92rem;padding:.85rem 1rem;outline:none;transition:border-color .25s,box-shadow .25s;resize:none;width:100%;backdrop-filter:blur(5px);border-radius:2px;-webkit-user-select:text;user-select:text}
     .form-group input:focus,.form-group textarea:focus{border-color:var(--orange);box-shadow:0 0 0 1px var(--orange-dim),0 0 20px rgba(255,92,0,.08)}
     .form-group textarea{min-height:140px}
     .form-submit{background:var(--orange);color:#000;font-family:'Syne',sans-serif;font-weight:800;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;padding:1rem 2.2rem;border:none;cursor:none;align-self:flex-start;position:relative;overflow:hidden;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));transition:transform .2s,box-shadow .2s}
@@ -264,7 +292,12 @@
     .form-submit span.txt{position:relative;z-index:1}
     #form-msg{font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.08em;display:none;padding:.6rem 1rem;border-left:2px solid var(--orange);background:var(--orange-dim)}
 
-    /* FOOTER */
+    /* WAKE BUTTON */
+    .wake-btn{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;background:transparent;border:1px solid var(--border-hot);color:var(--orange);padding:.3rem .9rem;cursor:none;clip-path:polygon(4px 0,100% 0,100% calc(100% - 4px),calc(100% - 4px) 100%,0 100%,0 4px);transition:background .2s,box-shadow .2s,opacity .2s;position:relative;overflow:hidden}
+    .wake-btn:hover{background:var(--orange-dim);box-shadow:0 0 14px rgba(255,92,0,.2)}
+    .wake-btn:disabled{opacity:.4;cursor:default}
+    .wake-btn.waking{animation:wakePulse .8s ease-in-out infinite}
+    @keyframes wakePulse{0%,100%{opacity:1}50%{opacity:.4}}
     footer{border-top:1px solid var(--border);padding:1.8rem clamp(1.5rem,5vw,3rem);display:flex;justify-content:space-between;align-items:center;font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.1em;color:#333}
     .footer-logo{display:flex;align-items:center}
     .footer-logo svg{height:22px;width:auto}
@@ -503,10 +536,11 @@
     <div class="section-inner">
       <div class="section-label">Live Activity</div>
       <h2 class="section-title reveal">CODING<br>STATS</h2>
-      <div class="stats-card glass revea l reveal-d1">
+      <div class="stats-card glass reveal reveal-d1">
         <div class="stats-header">
-          <div class="pulse-dot"></div>
+          <div class="pulse-dot" id="stats-pulse"></div>
           <span class="stats-header-label">Last 7 Days · Powered by DevTracker</span>
+          <button class="wake-btn" id="wakeBtn" onclick="wakeAndFetch()"><span class="wake-txt">Wake Koyeb</span></button>
         </div>
         <div class="stats-nums">
           <div class="stat-block"><div class="val" id="s-time">--</div><div class="lbl">Total Time</div></div>
@@ -598,70 +632,15 @@
   </footer>
 
   <script>
-
-  document.querySelectorAll("a, button, .project-card").forEach(el => {
-    el.addEventListener("mouseenter", () => {
-      cur.classList.add("hover");
-      ring.classList.add("hover");
-      const rect = el.getBoundingClientRect();
-      ring.style.width = rect.width + "px";
-      ring.style.height = rect.height + "px";
-      ring.style.borderRadius = "8px";
-    });
-    
-    el.addEventListener("mouseleave", () => {
-      cur.classList.remove("hover");
-      ring.classList.remove("hover");
-      ring.style.width = "40px";
-      ring.style.height = "40px";
-      ring.style.borderRadius = "50%";
-    });
-  });
-
-  async function updateVisitorCount() {
-    try {
-      const DEVTRACKER_URL = 'https://wasteful-gilligan-bob-h4ck3r-5dbfe2c5.koyeb.app';
-      
-      const sessionKey = 'portfolio_visited_session';
-      const lastVisit = sessionStorage.getItem(sessionKey);
-      const method = lastVisit ? 'GET' : 'POST';
-      
-      const res = await fetch(`${DEVTRACKER_URL}/visitor`, {
-        method: method,
-        headers: { 'Content-Type': 'application/json' }
-      });
-      
-      if (!res.ok) throw new Error('Failed to fetch count');
-      
-      const data = await res.json();
-      
-      if (!lastVisit) {
-        sessionStorage.setItem(sessionKey, Date.now());
-      }
-      
-      const count = data.count;
-      if (count >= 1000) {
-        document.getElementById("visitor-count").textContent = (count / 1000).toFixed(1) + 'k+';
-      } else {
-        document.getElementById("visitor-count").textContent = count.toLocaleString();
-      }
-      
-    } catch (error) {
-      console.error("Counter error:", error);
-      document.getElementById("visitor-count").textContent = "1.2k+";
-    }
-  }
-      
   (function(){
     "use strict";
 
     // ══════════════════════════════════════════════
-    // DATA
+    // CONFIG — update these when needed
     // ══════════════════════════════════════════════
-
     const DEVTRACKER_URL = "https://wasteful-gilligan-bob-h4ck3r-5dbfe2c5.koyeb.app";
     const DEVTRACKER_KEY = "Zl7qUKa2Op9qBEYuXyZMnkOGx3HebtanoW5foElcZNE";
-    const DISCORD_WEBHOOK = "https://discord.com/api/webhooks/1491601620578992208/EfLxyHzixDxpclYdN7P_b3_7sX__o9gC5czIG0fN9TKdGn6Xn52eFTaV4eLMuy_wPjkn";
+    const DISCORD_WEBHOOK = "YOUR_NEW_WEBHOOK_HERE"; // ⚠️ regenerate this — old one was exposed
 
     const PROJECTS = [
       {
@@ -702,7 +681,7 @@
       { label:"GitHub",    handle:"@BobbyX208",  href:"https://github.com/BobbyX208" },
       { label:"Discord",   handle:"@ro.bob",       href:"https://discord.com/users/1214231706698252320" },
       { label:"Instagram", handle:"@bob_msi",     href:"https://instagram.com/bob_msi" },
-      { label:"Facebook",  handle:"Bobby",        href:"https://facebook.com/bob_msi" }
+      { label:"Facebook",  handle:"Bobby",        href:"https://facebook.com/Bobbyvic23" }
     ];
 
     // ══════════════════════════════════════════════
@@ -855,18 +834,10 @@
       btn.style.opacity=".7";
 
       try{
-        const res = await fetch(DISCORD_WEBHOOK,{
-          method:"POST", headers:{"Content-Type":"application/json"},
-          body:JSON.stringify({ embeds:[{
-            title:"📬 New Portfolio Message",
-            color:0xFF5C00,
-            fields:[
-              {name:"Name",value:name,inline:true},
-              {name:"Email",value:email,inline:true},
-              {name:"Message",value:message,inline:false}
-            ],
-            footer:{text:"iambobby.netlify.app · "+new Date().toLocaleString()}
-          }]})
+        const res = await fetch("https://wasteful-gilligan-bob-h4ck3r-5dbfe2c5.koyeb.app/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, message })
         });
         if(res.ok||res.status===204){
           msgEl.style.display="block"; msgEl.style.borderColor="#22c55e";
@@ -911,9 +882,17 @@
     const cur=document.getElementById("cursor"),ring=document.getElementById("cursorRing");
     let mx=0,my=0,rx=0,ry=0;
     document.addEventListener("mousemove",e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+"px";cur.style.top=my+"px";});
+
     document.querySelectorAll("a,button,.skill-tag,.project-card").forEach(el=>{
-      el.addEventListener("mouseenter",()=>{cur.classList.add("hover");ring.classList.add("hover");});
-      el.addEventListener("mouseleave",()=>{cur.classList.remove("hover");ring.classList.remove("hover");});
+      el.addEventListener("mouseenter",()=>{
+        cur.classList.add("hover"); ring.classList.add("hover");
+        const r=el.getBoundingClientRect();
+        ring.style.width=r.width+"px"; ring.style.height=r.height+"px"; ring.style.borderRadius="6px";
+      });
+      el.addEventListener("mouseleave",()=>{
+        cur.classList.remove("hover"); ring.classList.remove("hover");
+        ring.style.width="40px"; ring.style.height="40px"; ring.style.borderRadius="50%";
+      });
     });
     (function anim(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+"px";ring.style.top=ry+"px";requestAnimationFrame(anim);})();
 
@@ -923,7 +902,149 @@
       e.currentTarget.style.setProperty("--my",((e.clientY-r.top)/r.height*100)+"%");
     });
 
+    // ══════════════════════════════════════════════
+    // VISITOR COUNTER
+    // ══════════════════════════════════════════════
+    async function updateVisitorCount(){
+      try{
+        const key="portfolio_visited";
+        const already=sessionStorage.getItem(key);
+        const res=await fetch(`${DEVTRACKER_URL}/visitor`,{
+          method: already ? "GET" : "POST",
+          headers:{"Content-Type":"application/json"}
+        });
+        if(!res.ok) throw new Error();
+        const data=await res.json();
+        if(!already) sessionStorage.setItem(key,Date.now());
+        const c=data.count||data.total||0;
+        document.getElementById("visitor-count").textContent=c>=1000?(c/1000).toFixed(1)+"k+":c.toLocaleString();
+      }catch(e){
+        document.getElementById("visitor-count").textContent="--";
+      }
+    }
+    updateVisitorCount();
+
     document.getElementById("year").textContent=new Date().getFullYear();
+  })();
+
+  // ══════════════════════════════════════════════
+  // WAKE KOYEB — outside IIFE so onclick can reach it
+  // ══════════════════════════════════════════════
+  async function wakeAndFetch(){
+    const btn=document.getElementById("wakeBtn");
+    const pulse=document.getElementById("stats-pulse");
+    btn.disabled=true; btn.classList.add("waking");
+    btn.querySelector(".wake-txt").textContent="Waking...";
+    pulse.style.background="#FF5C00";
+
+    const DEVTRACKER_URL="https://wasteful-gilligan-bob-h4ck3r-5dbfe2c5.koyeb.app";
+    const DEVTRACKER_KEY="Zl7qUKa2Op9qBEYuXyZMnkOGx3HebtanoW5foElcZNE";
+
+    let awake=false;
+    for(let i=0;i<8;i++){
+      try{
+        const r=await fetch(`${DEVTRACKER_URL}/`,{signal:AbortSignal.timeout(6000)});
+        if(r.ok||r.status<500){awake=true;break;}
+      }catch(e){}
+      await new Promise(r=>setTimeout(r,2500));
+      btn.querySelector(".wake-txt").textContent=`Waking (${i+1})...`;
+    }
+
+    if(!awake){
+      btn.querySelector(".wake-txt").textContent="Failed";
+      pulse.style.background="#ff4444";
+      setTimeout(()=>{btn.disabled=false;btn.classList.remove("waking");btn.querySelector(".wake-txt").textContent="Wake Koyeb";pulse.style.background="";},3000);
+      return;
+    }
+
+    btn.querySelector(".wake-txt").textContent="Fetching...";
+
+    try{
+      const res=await fetch(`${DEVTRACKER_URL}/devtracker/analytics?days=7`,{
+        headers:{"Authorization":`Bearer ${DEVTRACKER_KEY}`}
+      });
+      if(!res.ok) throw new Error();
+      const d=await res.json();
+      const totalSecs=d.totalSeconds||d.total_seconds||0;
+      const hrs=Math.floor(totalSecs/3600);
+      const mins=Math.floor((totalSecs%3600)/60);
+      document.getElementById("s-time").textContent=hrs>0?`${hrs}h ${mins}m`:`${mins}m`;
+      document.getElementById("s-sessions").textContent=d.sessionCount||d.session_count||"--";
+      const avgM=Math.floor((totalSecs/7)/60);
+      document.getElementById("s-avg").textContent=`${avgM}m`;
+
+      const byLang=d.byLanguage||d.languages||{};
+      const langs=Array.isArray(byLang)
+        ? byLang.filter(l=>l.name!=="Unknown").slice(0,5)
+        : Object.entries(byLang).filter(([n])=>n!=="Unknown").map(([name,seconds])=>({name,seconds,percent:totalSecs>0?(seconds/totalSecs)*100:0})).sort((a,b)=>b.seconds-a.seconds).slice(0,5);
+
+      if(langs.length){
+        const maxV=langs[0].seconds||langs[0].percent||1;
+        document.getElementById("s-langs").innerHTML=langs.map(l=>{
+          const pct=(l.percent??((l.seconds/maxV)*100)).toFixed(1);
+          const bar=((l.seconds??l.percent)/maxV*100).toFixed(1);
+          return `<div class="lang-row"><span class="lang-name">${l.name}</span><div class="lang-track"><div class="lang-fill" style="width:0%" data-w="${bar}%"></div></div><span class="lang-pct">${pct}%</span></div>`;
+        }).join("");
+        requestAnimationFrame(()=>requestAnimationFrame(()=>{
+          document.querySelectorAll(".lang-fill").forEach(b=>b.style.width=b.dataset.w);
+        }));
+      }
+
+      pulse.style.background="#22c55e"; pulse.style.boxShadow="0 0 10px #22c55e55";
+      btn.querySelector(".wake-txt").textContent="Up ✓";
+      setTimeout(()=>{btn.disabled=false;btn.classList.remove("waking");btn.querySelector(".wake-txt").textContent="Wake Koyeb";},4000);
+    }catch(e){
+      btn.querySelector(".wake-txt").textContent="No data";
+      setTimeout(()=>{btn.disabled=false;btn.classList.remove("waking");btn.querySelector(".wake-txt").textContent="Wake Koyeb";},3000);
+    }
+  }
+  </script>
+  <!-- © Bobby (BOB.) — bobbyx208.github.io — All rights reserved -->
+  <script>
+  // ── ANTI-THEFT ──────────────────────────────────────────────
+  // © Bobby (BOB.) 2026 · bobbyx208.github.io · All rights reserved.
+  // Unauthorised copying or redistribution of this source is prohibited.
+  // ────────────────────────────────────────────────────────────
+
+  (function(){
+    document.addEventListener("contextmenu", function(e){
+      e.preventDefault();
+      return false;
+    });
+
+    document.addEventListener("keydown", function(e){
+      if(e.key === "F12"){
+        e.preventDefault(); return false;
+      }
+      if((e.ctrlKey||e.metaKey) && e.shiftKey && (e.key==="I"||e.key==="i")){
+        e.preventDefault(); return false;
+      }
+      if((e.ctrlKey||e.metaKey) && e.shiftKey && (e.key==="J"||e.key==="j")){
+        e.preventDefault(); return false;
+      }
+      if((e.ctrlKey||e.metaKey) && e.shiftKey && (e.key==="C"||e.key==="c")){
+        e.preventDefault(); return false;
+      }
+      if((e.ctrlKey||e.metaKey) && (e.key==="U"||e.key==="u")){
+        e.preventDefault(); return false;
+      }
+      if((e.ctrlKey||e.metaKey) && (e.key==="S"||e.key==="s")){
+        e.preventDefault(); return false;
+      }  
+      if((e.ctrlKey||e.metaKey) && (e.key==="A"||e.key==="a")){
+        e.preventDefault(); return false;
+      }
+    });
+
+    document.addEventListener("selectstart", function(e){
+      if(e.target.tagName==="INPUT"||e.target.tagName==="TEXTAREA") return true;
+      e.preventDefault(); return false;
+    });
+
+    document.addEventListener("dragstart", function(e){
+      e.preventDefault(); return false;
+    });
+
   })();
   </script>
 </body>
