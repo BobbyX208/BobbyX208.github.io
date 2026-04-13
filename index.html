@@ -38,6 +38,7 @@
     "url": "https://bobbyx208.github.io/",
     "sameAs": [
       "https://github.com/BobbyX208",
+      "https://www.kaggle.com/bobbyx208,
       "https://discord.com/users/1214231706698252320",
       "https://instagram.com/bob_msi",
       "https://facebook.com/Bobbyvic23"
@@ -617,7 +618,7 @@
       </svg>
     </div>
     <div>
-      <a href="https://github.com/BobbyX208" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">GitHub</a> · Built with intention · © <span id="year"></span> Bobby
+      <a href="https://github.com/BobbyX208" target="_blank" rel="noopener me" style="color:inherit;text-decoration:none;">GitHub</a> · Built with intention · © <span id="year"></span> Bobby
     </div>
   </footer>
 
@@ -713,7 +714,7 @@
     const sl = document.getElementById("socialLinks");
     SOCIALS.forEach(s => {
       const a = document.createElement("a");
-      a.href=s.href; a.target="_blank"; a.rel="noopener"; a.className="social-link";
+      a.href=s.href; a.target="_blank"; a.rel="noopener me"; a.className="social-link";
       a.innerHTML=`<span>${s.label}</span><span>${s.handle} ↗</span>`;
       sl.appendChild(a);
     });
