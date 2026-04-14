@@ -38,7 +38,7 @@
     "url": "https://bobbyx208.github.io/",
     "sameAs": [
       "https://github.com/BobbyX208",
-      "https://www.kaggle.com/bobbyx208,
+      "https://www.kaggle.com/bobbyx208",
       "https://discord.com/users/1214231706698252320",
       "https://instagram.com/bob_msi",
       "https://facebook.com/Bobbyvic23"
@@ -49,15 +49,74 @@
   </script>
 
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap"/>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" media="print" onload="this.media='all'"/>
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap"/></noscript>
+  <link rel="preload" href="/fonts/bebas-neue-v16-latin/bebas-neue-v16-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/syne-v24-latin/syne-v24-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/syne-v24-latin/syne-v24-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/jetbrains-mono-v24-latin/jetbrains-mono-v24-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+
   <style>
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{
-      --orange:#FF5C00;
+  @font-face {
+    font-family: 'Bebas Neue';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/fonts/bebas-neue-v16-latin/bebas-neue-v16-latin-regular.woff2') format('woff2');
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Syne';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/fonts/syne-v24-latin/syne-v24-latin-regular.woff2') format('woff2');
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Syne';
+    font-style: normal;
+    font-weight: 600;
+    src: url('/fonts/syne-v24-latin/syne-v24-latin-600.woff2') format('woff2');
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Syne';
+    font-style: normal;
+    font-weight: 700;
+    src: url('/fonts/syne-v24-latin/syne-v24-latin-700.woff2') format('woff2');
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Syne';
+    font-style: normal;
+    font-weight: 800;
+    src: url('/fonts/syne-v24-latin/syne-v24-latin-800.woff2') format('woff2');
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 300;
+    src: url('/fonts/jetbrains-mono-v24-latin/jetbrains-mono-v24-latin-300.woff2') format('woff2');
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/fonts/jetbrains-mono-v24-latin/jetbrains-mono-v24-latin-regular.woff2') format('woff2');
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 500;
+    src: url('/fonts/jetbrains-mono-v24-latin/jetbrains-mono-v24-latin-500.woff2') format('woff2');
+    font-display: swap;
+  }
+
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --orange:#FF5C00;
       --orange-dim:rgba(255,92,0,0.08);
       --orange-mid:rgba(255,92,0,0.22);
       --orange-glow:rgba(255,92,0,0.45);
@@ -791,20 +850,63 @@
     fetchStats();
     setInterval(fetchStats, 300000);
 
+  function isMessageMeaningful(text) {
+    const trimmed = text.trim();
+    
+    if (trimmed.length < 10) return false;
+    
+    if (!trimmed.includes(' ')) return false;
+    
+    const gibberishPattern = /[^aeiou\s]{6,}/i;
+    if (gibberishPattern.test(trimmed)) return false;
+    
+    const repeatedPattern = /(.)\1{4,}/;
+    if (repeatedPattern.test(trimmed)) return false;
+    
+    const lettersOnly = trimmed.replace(/[^a-zA-Z]/g, '');
+    if (lettersOnly.length < 5) return false;
+    
+    return true;
+  }
+
     document.getElementById("submitBtn").addEventListener("click", async () => {
       const name    = document.getElementById("f-name").value.trim();
       const email   = document.getElementById("f-email").value.trim();
       const message = document.getElementById("f-msg").value.trim();
       const msgEl   = document.getElementById("form-msg");
 
-      if(!name||!email||!message){
-        msgEl.style.display="block"; msgEl.style.borderColor="#ff4444";
-        msgEl.textContent="// Fill in all fields first."; return;
+      if(!name || !email || !message){
+        msgEl.style.display = "block";
+        msgEl.style.borderColor = "#ff4444";
+        msgEl.textContent = "// Fill in all fields first.";
+        return;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if(!emailRegex.test(email)){
+        msgEl.style.display = "block";
+        msgEl.style.borderColor = "#ff4444";
+        msgEl.textContent = "// Please enter a valid email address.";
+        return;
+      }
+
+      if(name.replace(/[^a-zA-Z]/g, '').length < 3){
+        msgEl.style.display = "block";
+        msgEl.style.borderColor = "#ff4444";
+        msgEl.textContent = "// Please enter your real name.";
+        return;
+      }
+
+      if(!isMessageMeaningful(message)){
+        msgEl.style.display = "block";
+        msgEl.style.borderColor = "#ff4444";
+        msgEl.textContent = "// Please write a meaningful message (at least 10 chars, more than one word).";
+        return;
       }
 
       const btn = document.getElementById("submitBtn");
-      btn.querySelector(".txt").textContent="Sending...";
-      btn.style.opacity=".7";
+      btn.querySelector(".txt").textContent = "Sending...";
+      btn.style.opacity = ".7";
 
       try{
         const res = await fetch(`${DEVTRACKER_URL}/contact`, {
@@ -812,19 +914,23 @@
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ name, email, message })
         });
-        if(res.ok||res.status===204){
-          msgEl.style.display="block"; msgEl.style.borderColor="#22c55e";
-          msgEl.textContent="// Sent. I'll get back to you soon.";
-          document.getElementById("f-name").value="";
-          document.getElementById("f-email").value="";
-          document.getElementById("f-msg").value="";
-        } else throw new Error();
-      }catch(e){
-        msgEl.style.display="block"; msgEl.style.borderColor="#ff4444";
-        msgEl.textContent="// Failed. Hit me up on Discord directly.";
+        if(res.ok || res.status === 204){
+          msgEl.style.display = "block";
+          msgEl.style.borderColor = "#22c55e";
+          msgEl.textContent = "// Sent. I'll get back to you soon.";
+          document.getElementById("f-name").value = "";
+          document.getElementById("f-email").value = "";
+          document.getElementById("f-msg").value = "";
+        } else {
+          throw new Error();
+        }
+      } catch(e){
+        msgEl.style.display = "block";
+        msgEl.style.borderColor = "#ff4444";
+        msgEl.textContent = "// Failed. Hit me up on Discord directly.";
       }
-      btn.querySelector(".txt").textContent="Send It →";
-      btn.style.opacity="1";
+      btn.querySelector(".txt").textContent = "Send It →";
+      btn.style.opacity = "1";
     });
 
     const phrases=["I build things that ship.","Python. JavaScript. Whatever works.","Fast execution. Clean code.","Creative Technologist."];
